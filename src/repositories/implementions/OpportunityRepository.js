@@ -2,6 +2,7 @@ import { IOpportunitRepository } from '../IOpportunityRepository';
 
 class OpportunityRepository extends IOpportunityRepository {
   constructor(database) {
+    super();
     this._database = database;
   }
 
@@ -11,3 +12,5 @@ class OpportunityRepository extends IOpportunityRepository {
     return opportunities;
   }
 }
+
+export { OpportunityRepository };
