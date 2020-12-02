@@ -1,9 +1,10 @@
-import { IOpportunitRepository } from '../IOpportunityRepository';
+import { IOpportunityRepository } from '../IOpportunityRepository';
+import Opportunity from '../../database/schemas/OpportunitySchema';
 
 class OpportunityRepository extends IOpportunityRepository {
-  constructor(database) {
+  constructor() {
     super();
-    this._database = database;
+    this._database = Opportunity;
   }
 
   async getAllOpportunities() {

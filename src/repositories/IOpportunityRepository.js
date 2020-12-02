@@ -1,9 +1,9 @@
 import { NotImplementedException } from '../utils/NotImplementedException';
 
-class IOpportunitRepository {
+class IOpportunityRepository {
   getAllOpportunities() {
     throw new NotImplementedException();
   }
 }
 
-export { IOpportunitRepository };
+export { IOpportunityRepository };

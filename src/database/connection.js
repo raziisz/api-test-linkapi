@@ -10,6 +10,7 @@ export const connect = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
+
 }
 
 export const disconnect = async () => mongoose.connection.close();
