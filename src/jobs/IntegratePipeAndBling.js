@@ -2,7 +2,9 @@ import { BlingProvider } from '../providers/implementions/BlingProvider';
 
 import Opportunity from '../database/schemas/OpportunitySchema';
 
-const verifyExists = async (opportunities = []) => {
+const bling = new BlingProvider();
+
+const verifyExistsOpportunity = async (opportunities = []) => {
   let newData = [];
   for (const op of opportunities) {
     let result = await Opportunity.findOne({id_op: op.id_op});
@@ -15,10 +17,27 @@ const verifyExists = async (opportunities = []) => {
   return newData;
 }
 
+const createOrderForBling = async (opportunities) => {
+  opportunities.forEach(async op => {
+    let pedido = {
+      data: new Date(),
+      cliente: {
+        nome: op.org_name,
+      },
+      itens: [{
+        descricao: op.title,
+        vlr_unit: op.value,
+      }]
+    }
+
+    const result = await bling.storeOrder(pedido);
+    console.log(result);
+  });
+}
+
 const createOpportunities = async (opportunities) => {
   opportunities.forEach(async op => {
     const result = await Opportunity.create(op);
-    console.log('novo ', result);
   });
 }
 
@@ -49,11 +68,13 @@ export default async function (data = []) {
         }
       }); 
 
-      let newOpportunities = await verifyExists(mapOpportunities);
+      let newOpportunities = await verifyExistsOpportunity(mapOpportunities);
       
 
       if (newOpportunities.length > 0) {
         await createOpportunities(newOpportunities);
+        await createOrderForBling(newOpportunities);
+
       }
     }
 
