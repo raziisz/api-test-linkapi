@@ -6,6 +6,9 @@ const opportunityController = opportunityFactory();
 
 const router = Router();
 
-router.get('/', opportunityController.index);
+router.get('/', (req, res) => {
+  return res.send("It's works");
+});
+router.get('/opportunities', opportunityController.index);
 
 export { router }

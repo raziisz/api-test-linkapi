@@ -1,3 +1,4 @@
+import service from '../jobs/IntegratePipeAndBling';
 class OpportunityController {
   
   constructor(repository) {
@@ -9,9 +10,7 @@ class OpportunityController {
     
     try {
       const data = await this._repository.getAllOpportunities();
-
-      console.log(data);
-
+      await service(data);
       return res.json(data);
     } catch (error) {
       console.log('Deu erro', error)

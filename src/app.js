@@ -1,11 +1,14 @@
 import express from 'express';
 import cors from 'cors';
+import pipeAndBlingIntegrate from './jobs/IntegratePipeAndBling';
 import { router } from './routes';
 import { connect } from './database/connection';
+
 
 class App {
   constructor() {
     this.express = express();
+    //setInterval(pipeAndBlingIntegrate, 1000 * 60);
     this.middlewares();
   }
 
@@ -13,6 +16,7 @@ class App {
     this.express.use(express.json());
     this.express.use(cors());
     await this.connectDatabase();
+    //this.express.use(pipeAndBlingIntegrate);
     this.express.use(router)
   }
 

@@ -5,8 +5,6 @@ const OpportunitySchema = new Schema(
     id_op: Number,
     title: String,
     value: Number,
-    createdAt: Date,
-    updatedAt: Date,
     stage_id: Number,
     currency: String,
     add_time: Date,

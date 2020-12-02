@@ -24,8 +24,7 @@ class BlingProvider extends IOrderProvider {
       
       return response.data
     } catch (error) {
-      console.log('Error', error);
-      return error.response.data || 'Erro interno no servidor';
+      throw error;
     }
   }
 }
