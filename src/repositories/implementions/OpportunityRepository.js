@@ -39,12 +39,15 @@ class OpportunityRepository extends IOpportunityRepository {
     if (opportunities.length > 0) {
       
       mappedOpportunities = opportunities.map(op => {
+        
         const formatMMOrDd = (data = "") => data.toString().padStart(2, "0");
+        
         return {
           date: `${op._id.year}-${formatMMOrDd(op._id.month)}-${formatMMOrDd(op._id.day)}`,
           total: op.total,
           quantity: op.count
         }
+        
       });
 
     }

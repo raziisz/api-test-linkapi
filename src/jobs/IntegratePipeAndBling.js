@@ -23,7 +23,6 @@ const createOrderForBling = async (opportunities) => {
     let newTitle = RemoveCaracteresEspecial(op.title);
     let codigo = ` PROD-${Date.now()}`;
     
-    console.log(newTitle);
     let itens = [];
     
     let item = {};
@@ -44,7 +43,9 @@ const createOrderForBling = async (opportunities) => {
     
     try {
       const result = await bling.storeOrder(pedido);
-      console.log('Resultado', result);
+      if (!!result.data.retorno.erros) {
+        throw result.data.retorno.erros
+      }
     } catch (error) {
       throw error
     }

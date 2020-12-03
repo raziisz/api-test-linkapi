@@ -10,6 +10,8 @@ router.get('/', (req, res) => {
   return res.send("It's works");
 });
 
+
+// Opportunities
 router.get('/opportunities', opportunityController.index);
 router.get('/opportunities/group-by-day', opportunityController.showGroupBy);
 
