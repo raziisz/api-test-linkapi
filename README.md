@@ -7,7 +7,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/);
 
-Você também vai precisar criar uma conta na [MongoDbCloud](https://www.mongodb.com/cloud) para utilizar um banco de dados NoSql na nuvem.
+Você também vai precisar criar uma conta na [MongoDbCloud](https://www.mongodb.com/cloud) para utilizar um banco de dados NoSql na nuvem. Criar contas na [Pipedrive](https://www.pipedrive.com/pt) e na [Bling](https://www.bling.com.br/) para uso de suas API
 
 
 <h4 align="center"> 
