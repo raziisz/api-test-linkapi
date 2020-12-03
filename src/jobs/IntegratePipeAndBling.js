@@ -1,6 +1,7 @@
 import { BlingProvider } from '../providers/implementions/BlingProvider';
 
 import Opportunity from '../database/schemas/OpportunitySchema';
+import { RemoveCaracteresEspecial } from '../utils/HelpersFunctions';
 
 const bling = new BlingProvider();
 
@@ -19,19 +20,35 @@ const verifyExistsOpportunity = async (opportunities = []) => {
 
 const createOrderForBling = async (opportunities) => {
   opportunities.forEach(async op => {
+    let newTitle = RemoveCaracteresEspecial(op.title);
+    let codigo = ` PROD-${Date.now()}`;
+    
+    console.log(newTitle);
+    let itens = [];
+    
+    let item = {};
+    item.codigo = codigo;
+    item.descricao = newTitle;
+    item.vlr_unit = op.value;
+    item.un = 'un';
+    item.qtd = 1;
+    
+    itens.push({ item });
+    
     let pedido = {
-      data: new Date(),
       cliente: {
         nome: op.org_name,
       },
-      itens: [{
-        descricao: op.title,
-        vlr_unit: op.value,
-      }]
+      itens
+    }
+    
+    try {
+      const result = await bling.storeOrder(pedido);
+      console.log('Resultado', result);
+    } catch (error) {
+      throw error
     }
 
-    const result = await bling.storeOrder(pedido);
-    console.log(result);
   });
 }
 
