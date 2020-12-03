@@ -24,8 +24,10 @@ class BlingProvider extends IOrderProvider {
     const xml = this.xmlParser.parse('pedido', order, this.Options);
     try {
       const response = await axios.post(`https://bling.com.br/Api/v2/pedido/json?apikey=${this.API_KEY}&xml=${xml}`);
+      
       if(!!response.data.retorno.erros) {
         console.log('erros', JSON.stringify(response.data.retorno.erros));
+      
       }
       return response.data
     } catch (error) {

@@ -1,18 +1,21 @@
 import { BlingProvider } from '../providers/implementions/BlingProvider';
 
-import Opportunity from '../database/schemas/OpportunitySchema';
+import { OpportunityRepository } from '../repositories/implementions/OpportunityRepository';
 import { RemoveCaracteresEspecial } from '../utils/HelpersFunctions';
 
 const bling = new BlingProvider();
+const repo = new OpportunityRepository();
 
 const verifyExistsOpportunity = async (opportunities = []) => {
   let newData = [];
   for (const op of opportunities) {
-    let result = await Opportunity.findOne({id_op: op.id_op});
+    
+    let result = await repo.getOpportunityById(op.id_op);
 
     if (!result) {
       newData.push(op);
     }
+
   }
 
   return newData;
@@ -42,8 +45,8 @@ const createOrderForBling = async (opportunities) => {
     }
     
     try {
-      const result = await bling.storeOrder(pedido);
-      if (!!result.data.retorno.erros) {
+      const retorno = await bling.storeOrder(pedido);
+      if (!!retorno?.erros) {
         throw result.data.retorno.erros
       }
     } catch (error) {
@@ -54,9 +57,11 @@ const createOrderForBling = async (opportunities) => {
 }
 
 const createOpportunities = async (opportunities) => {
+  
   opportunities.forEach(async op => {
-    const result = await Opportunity.create(op);
+    const result = await repo.addOpportunity(op);
   });
+
 }
 
 export default async function (data = []) {
@@ -90,6 +95,7 @@ export default async function (data = []) {
       
 
       if (newOpportunities.length > 0) {
+        console.log(newOpportunities);
         await createOpportunities(newOpportunities);
         await createOrderForBling(newOpportunities);
 

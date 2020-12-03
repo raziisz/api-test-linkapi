@@ -8,6 +8,14 @@ class IOpportunityRepository {
   getOpportunitiesByDay() {
     throw new NotImplementedException();
   }
+
+  getOpportunityById(id) {
+    throw new NotImplementedException();
+  }
+
+  addOpportunity(data) {
+    throw new NotImplementedException();
+  }
 }
 
 export { IOpportunityRepository };

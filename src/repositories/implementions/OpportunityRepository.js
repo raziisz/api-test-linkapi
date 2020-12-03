@@ -47,12 +47,24 @@ class OpportunityRepository extends IOpportunityRepository {
           total: op.total,
           quantity: op.count
         }
-        
+
       });
 
     }
 
     return mappedOpportunities;
+  }
+
+  async addOpportunity(opportunity) {
+    const result = await Opportunity.create(opportunity);
+
+    return result;
+  }
+
+  async getOpportunityById(id) {
+    const result = await Opportunity.findOne({id_op: id});
+
+    return result;
   }
 }
 
