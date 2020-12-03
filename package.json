@@ -1,14 +1,18 @@
 {
   "name": "test-linkapi",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Api teste para processo seletivo LinkApi",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "email": "raziel_libertino@hotmail.com",
+    "name": "Luiz Felipe Carvalho Libertino",
+    "url": "https://raziisz.github.io/"
+  },
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.0",
