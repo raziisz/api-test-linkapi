@@ -4,6 +4,10 @@ class IOpportunityRepository {
   getAllOpportunities() {
     throw new NotImplementedException();
   }
+
+  getOpportunitiesByDay() {
+    throw new NotImplementedException();
+  }
 }
 
 export { IOpportunityRepository };

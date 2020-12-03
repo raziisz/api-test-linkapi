@@ -98,6 +98,7 @@ export default async function (data = []) {
   } catch (error) {
 
     console.log('error', error);
+    throw error;
 
   }
 }
